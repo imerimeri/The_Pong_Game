@@ -1,6 +1,3 @@
-#ball.py
-
-import random
 from turtle import Turtle
 
 class Ball(Turtle):
@@ -9,13 +6,20 @@ class Ball(Turtle):
         self.penup()
         self.shape("circle")
         self.color("black")
-
+        self.x_move = 3
+        self.y_move = 3
 
     def move(self):
-        rand_direction = random.randint(0,360)
-        self.setheading(rand_direction)
-        self.forward(self.move_speed)
+        new_x = self.xcor() + self.x_move
+        new_y = self.ycor() + self.y_move
+        self.goto(new_x, new_y)
 
+    def bounce_y(self):
+        self.y_move *= -1
 
+    def bounce_x(self):
+        self.x_move *= -1
 
-
+    def reset_position(self):
+        self.goto(0, 0)
+        self.bounce_x()
